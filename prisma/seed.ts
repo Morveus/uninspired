@@ -10,15 +10,15 @@ async function main() {
     .update('admin')
     .digest('hex')
 
-  await prisma.user.upsert({
-    where: { username: 'admin' },
-    update: {},
-    create: {
-      username: 'admin',
-      password: hashedPassword,
-      isAdmin: true,
-    },
-  })
+  // await prisma.user.upsert({
+  //   where: { username: 'admin' },
+  //   update: {},
+  //   create: {
+  //     username: 'admin',
+  //     password: hashedPassword,
+  //     isAdmin: true,
+  //   },
+  // })
 }
 
 main()

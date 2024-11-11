@@ -22,8 +22,20 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const json = await request.json()
+    
+    // Validate admin token
+    if (json.token !== process.env.LOGIN_TOKEN) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+
+    // Remove token from data before saving
+    const { token, ...itemData } = json
+
     const item = await prisma.wishlistItem.create({
-      data: json,
+      data: itemData,
     })
     return NextResponse.json(item)
   } catch (error) {

@@ -8,9 +8,16 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { WishlistTable } from '@/components/wishlist/WishlistTable'
+import { WishlistItem } from '@prisma/client'
 
-export default function AdminPage() {
-  const router = useRouter()
+type Props = {
+  params: {
+    token: string
+  }
+}
+
+export default function AdminPage({ params }: Props) {
   const t = useTranslations('admin')
   const [formData, setFormData] = useState({
     title: "",
@@ -21,23 +28,16 @@ export default function AdminPage() {
     currency: "EUR",
     priority: "3"
   })
+  const [items, setItems] = useState<WishlistItem[]>([])
+  const [token, setToken] = useState("")
 
-  // Check authentication on component mount
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await fetch('/api/auth/check')
-        if (!response.ok) {
-          router.push('/')
-        }
-      } catch (error) {
-        console.error('Error checking authentication:', error)
-        router.push('/')
-      }
+    const getParams = async () => {
+      const paramToken = await params.token
+      setToken(paramToken)
     }
-
-    checkAuth()
-  }, [router])
+    getParams()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -51,7 +51,8 @@ export default function AdminPage() {
         body: JSON.stringify({
           ...formData,
           price: formData.price ? parseFloat(formData.price) : null,
-          priority: parseInt(formData.priority)
+          priority: parseInt(formData.priority),
+          token: token
         }),
       })
 
@@ -71,15 +72,49 @@ export default function AdminPage() {
       })
 
       // Optional: Show success message or redirect
-      router.push('/wishlist')
+      // router.push('/wishlist')
 
     } catch (error) {
       console.error('Error creating wish:', error)
     }
   }
 
+  useEffect(() => {
+    fetchItems()
+  }, [])
+
+  const fetchItems = async () => {
+    try {
+      const response = await fetch('/api/wishlist')
+      if (!response.ok) throw new Error('Failed to fetch items')
+      const data = await response.json()
+      setItems(data)
+    } catch (error) {
+      console.error('Error fetching items:', error)
+    }
+  }
+
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await fetch(`/api/wishlist/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: token }),
+      })
+
+      if (!response.ok) throw new Error('Failed to delete item')
+      
+      // Refresh the list after deletion
+      fetchItems()
+    } catch (error) {
+      console.error('Error deleting item:', error)
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted p-8">
+    <div className="container mx-auto py-10 space-y-8">
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle>{t('addWish')}</CardTitle>
@@ -161,6 +196,11 @@ export default function AdminPage() {
           </CardFooter>
         </form>
       </Card>
+      
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4">Wishlist Items</h2>
+        <WishlistTable items={items} onDelete={handleDelete} />
+      </div>
     </div>
   )
 } 

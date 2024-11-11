@@ -7,37 +7,37 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { useRouter } from "next/navigation"
+import { FormEvent } from "react"
+
 export default function LoginPage() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
-  const router = useRouter();
   const locale = useLocale()
   const t = useTranslations('auth')
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      })
-
-      if (!response.ok) {
-        throw new Error('Invalid credentials')
-      }
-
-      router.push(`/${locale}/admin`)
-    } catch (error) {
-      console.error('Error logging in:', error)
-      setError(t('invalidCredentials'))
+  const router = useRouter()
+ 
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+ 
+    const formData = new FormData(event.currentTarget)
+    const username = formData.get('username')
+    const password = formData.get('password')
+ 
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    })
+ 
+    if (response.ok) {
+      router.push('/profile')
+    } else {
+      // Handle errors
     }
   }
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted flex items-center justify-center">
