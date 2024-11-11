@@ -11,6 +11,15 @@ A minimalist, self-hosted wishlist application with no unnecessary complexity. B
 - 🎨 **Modern UI**: Simple, light and responsive design
 - 🔒 **Basic Security**: Simple token-based admin access
 
+# Demo
+A demo is available at [uninspired.demo.morveus.com](https://uninspired.demo.morveus.com/)
+
+Admin token for the demo is `this-is-a-test-token`, which means you can connect to the admin panel at `/en/admin/this-is-a-test-token` (or `/fr/admin/this-is-a-test-token` if you prefer French)
+
+Full URL: [https://uninspired.demo.morveus.com/en/admin/this-is-a-test-token](https://uninspired.demo.morveus.com/en/admin/this-is-a-test-token)
+
+# Instructions
+
 ## How to build and push to Docker Hub
 ```
 docker buildx create --name uninspiredbuilder --use

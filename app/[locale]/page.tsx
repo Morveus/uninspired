@@ -53,7 +53,7 @@ export default function Home() {
         </main>
 
         {/* Features Section */}
-        <section className="py-20">
+        <section className="py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <FeatureCard 
               title={t('selfhosted')}
