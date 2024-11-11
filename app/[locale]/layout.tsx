@@ -53,22 +53,23 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
+          <header className="border-b">
+            <div className="container mx-auto px-4 py-4">
+              <Link href="/" className="text-xl font-semibold">
+                Uninspired
+              </Link>
+            </div>
+          </header>
           {children}
           <footer className="border-t py-8 mt-20">
             <div className="container mx-auto px-4">
               <div className="flex justify-between items-center flex-col sm:flex-row gap-4">
                 <div className="text-sm text-muted-foreground">
-                  © {new Date().getFullYear()} Uninspired. No rights reserved.
+                  © {new Date().getFullYear()} Uninspired by <Link href="https://github.com/Morveus">David Balland</Link>.
                 </div>
                 <div className="flex gap-6">
-                  <a href="https://github.com/Morveus" className="text-sm text-muted-foreground hover:text-foreground">
+                  <Link href="https://github.com/Morveus/uninspired" className="text-sm text-muted-foreground hover:text-foreground">
                     GitHub
-                  </a>
-                  <Link href="/docs" className="text-sm text-muted-foreground hover:text-foreground">
-                    Docs
-                  </Link>
-                  <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
-                    Privacy
                   </Link>
                 </div>
               </div>

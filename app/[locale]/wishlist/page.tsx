@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl"
 import { WishCard } from "@/components/wishlist/Wishcard"
 import { Link } from "@/i18n/routing"
 import { Button } from "@/components/ui/button"
-import { Home } from "lucide-react"
 
 interface WishlistItem {
   id: number
@@ -47,16 +46,6 @@ export default function WishlistPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       <div className="container mx-auto px-4 py-8">
-        {/* Navigation */}
-        <nav className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2">
-              <Home className="w-4 h-4" />
-              {t('backToHome')}
-            </Button>
-          </Link>
-        </nav>
-
         {/* Header with decorative elements */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -65,7 +54,7 @@ export default function WishlistPage() {
           <div className="mt-4 flex items-center justify-center gap-2">
             <div className="h-0.5 w-12 bg-primary/20 rounded-full" />
             <p className="text-muted-foreground">
-              {items.length} {t('itemsinthewishlist')}
+              {items.filter(item => !item.purchased).length} {t('itemsinthewishlist')}
             </p>
             <div className="h-0.5 w-12 bg-primary/20 rounded-full" />
           </div>

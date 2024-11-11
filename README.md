@@ -11,10 +11,10 @@ A minimalist, self-hosted wishlist application with no unnecessary complexity. B
 - 🎨 **Modern UI**: Simple, light and responsive design
 - 🔒 **Basic Security**: Simple token-based admin access
 
-## How to build 
+## How to build and push to Docker Hub
 ```
 docker buildx create --name uninspiredbuilder --use
-docker buildx build --platform linux/amd64,linux/arm64 -t morveus/uninspired:latest --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t YOUR_DOCKER_HUB_USERNAME/uninspired:latest --push .
 ```
 
 ## How to run
