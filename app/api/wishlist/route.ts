@@ -1,14 +1,28 @@
 import { prisma } from '@/lib/prisma'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { Prisma } from '@prisma/client'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const searchParams = request.nextUrl.searchParams
+    const sort = searchParams.get('sort') || 'price-asc'
+    const [field, order] = sort.split('-')
+
+    const orderBy: Prisma.WishlistItemOrderByWithRelationInput[] = [
+      { purchased: 'asc' }, // Always keep purchased items at the bottom
+    ]
+
+    // Add sorting based on query parameter
+    if (field === 'priority') {
+      orderBy.push({ priority: order as Prisma.SortOrder })
+    } else if (field === 'price') {
+      orderBy.push({ price: order as Prisma.SortOrder })
+    }
+
     const items = await prisma.wishlistItem.findMany({
-      orderBy: [
-        { purchased: 'asc' },  // false comes before true
-        { createdAt: 'desc' }, // newest first within each purchased group
-      ],
+      orderBy,
     })
+
     return NextResponse.json(items)
   } catch (error) {
     console.error('Error fetching wishlist items:', error)

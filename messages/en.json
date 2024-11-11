@@ -17,13 +17,18 @@
     "someone": "Someone",
     "purchasedBy": "Gifted by {name} on {date}",
     "purchaseDialogTitle": "Purchase confirmation",
-    "purchaseDescription": "Do you really want to get {item}?",
+    "purchaseDescription": "Do you really want to get {item}? It will no longer be possible to cancel your decision.",
     "purchaseDialogButton": "Confirm",
     "purchaseDialogCancel": "Cancel",
     "purchaseDialogSuccess": "Gifted!",
     "enterYourName": "Enter your name",
     "loadingwishlist": "Loading wishlist...",
-    "backToHome": "Home"
+    "backToHome": "Home",
+    "sortBy": "Sort by",
+    "priorityHighToLow": "Sort by priority: high priority first",
+    "priorityLowToHigh": "Sort by priority: low priority first",
+    "priceHighToLow": "Sort by price: most expensive first",
+    "priceLowToHigh": "Sort by price: least expensive first"
   },
   "admin": {
     "addWish": "Add wish",

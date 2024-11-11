@@ -17,13 +17,18 @@
       "someone": "Quelqu'un",
       "purchasedBy": "Offert par {name} le {date}",
       "purchaseDialogTitle": "Confirmation d'achat",
-      "purchaseDescription": "Voulez-vous vraiment offrir {item} ?",
+      "purchaseDescription": "Voulez-vous vraiment offrir {item} ? Il ne sera plus possible de revenir sur votre décision.",
       "purchaseDialogButton": "Confirmer",
       "purchaseDialogCancel": "Annuler",
       "purchaseDialogSuccess": "Offert !",
       "enterYourName": "Entrez votre nom",
       "loadingwishlist": "Chargement de la liste de cadeaux...",
-      "backToHome": "Accueil"
+      "backToHome": "Accueil",
+      "sortBy": "Trier par",
+      "priorityHighToLow": "Tri par priorité : haute priorité en premier",
+      "priorityLowToHigh": "Tri par priorité : basse priorité en premier",
+      "priceHighToLow": "Tri par prix : plus chers en premier",
+      "priceLowToHigh": "Tri par prix : moins chers en premier"
     },
     "admin": {
       "addWish": "Ajouter un souhait",

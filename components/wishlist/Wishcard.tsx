@@ -99,7 +99,7 @@ export function WishCard({ item }: { item: WishlistItem }) {
               onClick={() => setIsDialogOpen(true)}
               className="text-sm text-blue-500 hover:underline"
             >
-              {t('offer')}
+              {t('offer')} 🎁
             </button>
           )}
         </div>

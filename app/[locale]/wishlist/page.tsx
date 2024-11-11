@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import { WishCard } from "@/components/wishlist/Wishcard"
-import { Link } from "@/i18n/routing"
-import { Button } from "@/components/ui/button"
+import { SortSelector } from "@/components/wishlist/SortSelector"
 
 interface WishlistItem {
   id: number
@@ -22,15 +21,18 @@ interface WishlistItem {
   updatedAt: Date
 }
 
+type SortOption = 'priority-asc' | 'priority-desc' | 'price-asc' | 'price-desc'
+
 export default function WishlistPage() {
   const [items, setItems] = useState<WishlistItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [sort, setSort] = useState<SortOption>('price-asc')
   const t = useTranslations('wishlist')
   const userName = process.env.NEXT_PUBLIC_USER_NAME
 
   useEffect(() => {
-    fetch('/api/wishlist')
+    fetch(`/api/wishlist?sort=${sort}`)
       .then(res => res.json())
       .then(data => {
         setItems(data)
@@ -41,7 +43,7 @@ export default function WishlistPage() {
         setError('Failed to load wishlist items')
         setLoading(false)
       })
-  }, [])
+  }, [sort])
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
@@ -57,6 +59,9 @@ export default function WishlistPage() {
               {items.filter(item => !item.purchased).length} {t('itemsinthewishlist')}
             </p>
             <div className="h-0.5 w-12 bg-primary/20 rounded-full" />
+          </div>
+          <div className="mt-8 flex justify-center">
+            <SortSelector value={sort} onChange={(value: SortOption) => setSort(value)} />
           </div>
         </div>
 
