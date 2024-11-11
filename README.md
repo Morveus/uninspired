@@ -11,6 +11,18 @@ A minimalist, self-hosted wishlist application with no unnecessary complexity. B
 - 🎨 **Modern UI**: Simple, light and responsive design
 - 🔒 **Basic Security**: Simple token-based admin access
 
+# Screenshots
+
+<img width="788" alt="image" src="https://github.com/user-attachments/assets/1d0352c0-6b51-48bb-9af2-bf317f8648af">
+
+<img width="776" alt="image" src="https://github.com/user-attachments/assets/072543f4-3fb3-4ee6-b8ad-af80ee6dd1f2">
+
+<img width="622" alt="image" src="https://github.com/user-attachments/assets/8833f6c1-422d-48be-885c-647b3f82656f">
+
+<img width="773" alt="image" src="https://github.com/user-attachments/assets/d552a632-9049-42ef-a77d-e6874c315bc2">
+
+
+
 # Demo
 A demo is available at [uninspired.demo.morveus.com](https://uninspired.demo.morveus.com/)
 
