@@ -1,15 +1,15 @@
 {
     "wishlist": {
       "description": "Quand les idées cadeau manquent",
-      "fulldescription": "Un wishlist minimaliste, auto-hébergée",
-      "viewwishlist": "🎁 Afficher la liste de cadeaux de {username} 🎁",
+      "fulldescription": "Un wishlist minimaliste, rapide, auto-hébergée",
+      "viewwishlist": "🎁 Afficher la liste de souhaits de {username} 🎁",
       "selfhosted": "Auto-hébergé",
-      "selfhosteddescription": "Vos souhaits, votre serveur. Gardez vos données privées et sous votre contrôle.",
+      "selfhosteddescription": "Vos souhaites, votre serveur. Gardez vos données privées et sous votre contrôle.",
       "sharecarefully": "Partager sans prise de tête",
       "sharecarefullydescription": "Une liste pour l'administrateur. Zéro complexité. Démarrez plusieurs instances pour plusieurs membres de la famille, en utilisant des ports ou sous-domaines différents.",
       "staysimple": "Restez simple",
       "staysimpledescription": "Pas d'ads, pas de notifications, pas de complexité. Juste des listes de choses que vous aimeriez.",
-      "wishlist": "Liste de cadeaux de {username}",
+      "wishlist": "Liste de {username}",
       "itemsinthewishlist": "article(s) dans la liste de cadeaux",
       "offer": "Je l'offre",
       "purchaseConfirmation": "Confirmation d'achat",
@@ -22,15 +22,8 @@
       "purchaseDialogCancel": "Annuler",
       "purchaseDialogSuccess": "Offert !",
       "enterYourName": "Entrez votre nom",
-      "loadingwishlist": "Chargement de la liste de cadeaux..."
-    },
-    "auth": {
-      "login": "Connexion",
-      "loginDescription": "Connectez-vous pour gérer votre liste",
-      "username": "Nom d'utilisateur",
-      "password": "Mot de passe",
-      "loginButton": "Se connecter",
-      "invalidCredentials": "Identifiants invalides"
+      "loadingwishlist": "Chargement de la liste de cadeaux...",
+      "backToHome": "Accueil"
     },
     "admin": {
       "addWish": "Ajouter un souhait",

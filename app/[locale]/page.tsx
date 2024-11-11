@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import {Link} from '@/i18n/routing';
-import {Settings} from 'lucide-react';
 
 function FeatureCard({ title, description, icon }: { title: string; description: string; icon: string }) {
   return (
@@ -47,7 +46,7 @@ export default function Home() {
               className="font-medium animate-bounce bg-gradient-to-r from-red-500 to-green-500 hover:from-green-500 hover:to-red-500 hover:text-yellow-200 text-white border-none text-xl py-6"
             >
               <Link href="/wishlist">
-                {t('wishlist', {username: userName})} 🎁
+                {t('viewwishlist', {username: userName})}
               </Link>
             </Button>
           </div>
@@ -73,26 +72,6 @@ export default function Home() {
             />
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="border-t py-8 mt-20">
-          <div className="flex justify-between items-center flex-col sm:flex-row gap-4">
-            <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Uninspired. No rights reserved.
-            </div>
-            <div className="flex gap-6">
-              <a href="https://github.com" className="text-sm text-muted-foreground hover:text-foreground">
-                GitHub
-              </a>
-              <Link href="/docs" className="text-sm text-muted-foreground hover:text-foreground">
-                Docs
-              </Link>
-              <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
-                Privacy
-              </Link>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );

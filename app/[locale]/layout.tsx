@@ -6,6 +6,7 @@ import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
 import {NextIntlClientProvider} from 'next-intl';
 import type { Locale } from '@/i18n/routing';
+import {Link} from '@/i18n/routing';
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -27,12 +28,16 @@ function isValidLocale(locale: string): locale is Locale {
   return routing.locales.includes(locale as Locale);
 }
 
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
 export default async function RootLayout({
   children,
   params
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string }
+  params: Props['params']
 }>) {
   const {locale} = await params
 
@@ -49,6 +54,26 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           {children}
+          <footer className="border-t py-8 mt-20">
+            <div className="container mx-auto px-4">
+              <div className="flex justify-between items-center flex-col sm:flex-row gap-4">
+                <div className="text-sm text-muted-foreground">
+                  © {new Date().getFullYear()} Uninspired. No rights reserved.
+                </div>
+                <div className="flex gap-6">
+                  <a href="https://github.com/Morveus" className="text-sm text-muted-foreground hover:text-foreground">
+                    GitHub
+                  </a>
+                  <Link href="/docs" className="text-sm text-muted-foreground hover:text-foreground">
+                    Docs
+                  </Link>
+                  <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
+                    Privacy
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </footer>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,13 +1,45 @@
 {
-    "wishlist": {
-      "description": "Quand les idées cadeau manquent",
-      "fulldescription": "Une wishlist minimaliste, auto-hébergée",
-      "viewwishlist": "Voir la liste de souhaits",
-      "selfhosted": "Auto-hébergé",
-      "selfhosteddescription": "Vos souhaits, votre serveur. Gardez vos données privées et sous votre contrôle.",
-      "sharecarefully": "Partager sans prise de tête",
-      "sharecarefullydescription": "Une liste pour l'administrateur. Zéro complexité. Démarrez plusieurs instances pour plusieurs membres de la famille, en utilisant des ports ou sous-domaines différents.",
-      "staysimple": "Restez simple",
-      "staysimpledescription": "Pas d'ads, pas de notifications, pas de complexité. Juste des listes de choses que vous aimeriez."
-    }
+  "wishlist": {
+    "description": "When gift ideas are running low",
+    "fulldescription": "A minimalist, fast, self-hosted wishlist",
+    "viewwishlist": "🎁 View {username}'s wishlist 🎁",
+    "selfhosted": "Self-hosted",
+    "selfhosteddescription": "Your wishes, your server. Keep your data private and under your control.",
+    "sharecarefully": "Share without hassle",
+    "sharecarefullydescription": "One list per admin. Zero complexity. Start multiple instances for different family members using different ports or subdomains.",
+    "staysimple": "Keep it simple",
+    "staysimpledescription": "No ads, no notifications, no complexity. Just lists of things you'd like.",
+    "wishlist": "{username}'s List",
+    "itemsinthewishlist": "item(s) in the wishlist",
+    "offer": "I'll get this",
+    "purchaseConfirmation": "Purchase confirmation",
+    "nameRequired": "Name is required",
+    "someone": "Someone",
+    "purchasedBy": "Gifted by {name} on {date}",
+    "purchaseDialogTitle": "Purchase confirmation",
+    "purchaseDescription": "Do you really want to get {item}?",
+    "purchaseDialogButton": "Confirm",
+    "purchaseDialogCancel": "Cancel",
+    "purchaseDialogSuccess": "Gifted!",
+    "enterYourName": "Enter your name",
+    "loadingwishlist": "Loading wishlist...",
+    "backToHome": "Home"
+  },
+  "admin": {
+    "addWish": "Add wish",
+    "addWishDescription": "Add a new wish to your list",
+    "title": "Title",
+    "description": "Description",
+    "url": "URL",
+    "image": "Image URL",
+    "price": "Price",
+    "currency": "Currency",
+    "priority": "Priority",
+    "highPriority": "High",
+    "mediumPriority": "Medium",
+    "lowPriority": "Low",
+    "addWishButton": "Add",
+    "loadingwishlist": "Loading wishlist...",
+    "wishlistItems": "Wishlist items"
   }
+}

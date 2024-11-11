@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import { WishCard } from "@/components/wishlist/Wishcard"
+import { Link } from "@/i18n/routing"
+import { Button } from "@/components/ui/button"
+import { Home } from "lucide-react"
 
 interface WishlistItem {
   id: number
@@ -19,7 +22,6 @@ interface WishlistItem {
   createdAt: Date
   updatedAt: Date
 }
-
 
 export default function WishlistPage() {
   const [items, setItems] = useState<WishlistItem[]>([])
@@ -44,14 +46,28 @@ export default function WishlistPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
-      <div className="container mx-auto px-4 py-16">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-4xl font-bold">{t('wishlist', {username: userName})}</h1>
-            <p className="text-muted-foreground mt-2">
+      <div className="container mx-auto px-4 py-8">
+        {/* Navigation */}
+        <nav className="mb-8">
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="gap-2">
+              <Home className="w-4 h-4" />
+              {t('backToHome')}
+            </Button>
+          </Link>
+        </nav>
+
+        {/* Header with decorative elements */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            {t('wishlist', {username: userName})}
+          </h1>
+          <div className="mt-4 flex items-center justify-center gap-2">
+            <div className="h-0.5 w-12 bg-primary/20 rounded-full" />
+            <p className="text-muted-foreground">
               {items.length} {t('itemsinthewishlist')}
             </p>
+            <div className="h-0.5 w-12 bg-primary/20 rounded-full" />
           </div>
         </div>
 
@@ -70,11 +86,17 @@ export default function WishlistPage() {
           </div>
         )}
 
-        {/* Wishlist Grid */}
+        {/* Wishlist Grid with animation */}
         {!loading && !error && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {items.map(item => (
-              <WishCard key={item.id} item={item} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
+            {items.map((item, index) => (
+              <div
+                key={item.id}
+                className="animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <WishCard item={item} />
+              </div>
             ))}
           </div>
         )}
