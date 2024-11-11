@@ -1,0 +1,49 @@
+{
+    "wishlist": {
+      "description": "Quand les idées cadeau manquent",
+      "fulldescription": "Un wishlist minimaliste, auto-hébergée",
+      "viewwishlist": "Afficher la liste de cadeaux 🎁",
+      "selfhosted": "Auto-hébergé",
+      "selfhosteddescription": "Vos souhaits, votre serveur. Gardez vos données privées et sous votre contrôle.",
+      "sharecarefully": "Partager sans prise de tête",
+      "sharecarefullydescription": "Une liste pour l'administrateur. Zéro complexité. Démarrez plusieurs instances pour plusieurs membres de la famille, en utilisant des ports ou sous-domaines différents.",
+      "staysimple": "Restez simple",
+      "staysimpledescription": "Pas d'ads, pas de notifications, pas de complexité. Juste des listes de choses que vous aimeriez.",
+      "wishlist": "Liste de cadeaux",
+      "itemsinthewishlist": "article(s) dans la liste de cadeaux",
+      "offer": "Je l'offre",
+      "purchaseConfirmation": "Confirmation d'achat",
+      "nameRequired": "Le nom est requis",
+      "someone": "Quelqu'un",
+      "purchasedBy": "Offert par {name} le {date}",
+      "purchaseDialogTitle": "Confirmation d'achat",
+      "purchaseDescription": "Voulez-vous vraiment offrir {item} ?",
+      "purchaseDialogButton": "Confirmer",
+      "purchaseDialogCancel": "Annuler",
+      "purchaseDialogSuccess": "Offert !",
+      "enterYourName": "Entrez votre nom"
+    },
+    "auth": {
+      "login": "Connexion",
+      "loginDescription": "Connectez-vous pour gérer votre liste",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "loginButton": "Se connecter",
+      "invalidCredentials": "Identifiants invalides"
+    },
+    "admin": {
+      "addWish": "Ajouter un souhait",
+      "addWishDescription": "Ajoutez un nouveau souhait à votre liste",
+      "title": "Titre",
+      "description": "Description",
+      "url": "URL",
+      "image": "Image URL",
+      "price": "Prix",
+      "currency": "Devise",
+      "priority": "Priorité",
+      "highPriority": "Haute",
+      "mediumPriority": "Moyenne",
+      "lowPriority": "Basse",
+      "addWishButton": "Ajouter"
+    }
+  }

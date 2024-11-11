@@ -1,0 +1,13 @@
+{
+    "wishlist": {
+      "description": "Quand les idées cadeau manquent",
+      "fulldescription": "Une wishlist minimaliste, auto-hébergée",
+      "viewwishlist": "Voir la liste de souhaits",
+      "selfhosted": "Auto-hébergé",
+      "selfhosteddescription": "Vos souhaits, votre serveur. Gardez vos données privées et sous votre contrôle.",
+      "sharecarefully": "Partager sans prise de tête",
+      "sharecarefullydescription": "Une liste pour l'administrateur. Zéro complexité. Démarrez plusieurs instances pour plusieurs membres de la famille, en utilisant des ports ou sous-domaines différents.",
+      "staysimple": "Restez simple",
+      "staysimpledescription": "Pas d'ads, pas de notifications, pas de complexité. Juste des listes de choses que vous aimeriez."
+    }
+  }
