@@ -18,6 +18,8 @@ Admin token for the demo is `this-is-a-test-token`, which means you can connect 
 
 Full URL: [https://uninspired.demo.morveus.com/en/admin/this-is-a-test-token](https://uninspired.demo.morveus.com/en/admin/this-is-a-test-token)
 
+I'll reset the demo database regularly, so don't expect to keep your changes after a while.
+
 # Instructions
 
 ## How to build and push to Docker Hub
