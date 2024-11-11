@@ -26,6 +26,7 @@ export default function WishlistPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const t = useTranslations('wishlist')
+  const userName = process.env.NEXT_PUBLIC_USER_NAME
 
   useEffect(() => {
     fetch('/api/wishlist')
@@ -47,7 +48,7 @@ export default function WishlistPage() {
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-4xl font-bold">{t('wishlist')}</h1>
+            <h1 className="text-4xl font-bold">{t('wishlist', {username: userName})}</h1>
             <p className="text-muted-foreground mt-2">
               {items.length} {t('itemsinthewishlist')}
             </p>
@@ -58,7 +59,7 @@ export default function WishlistPage() {
         {loading && (
           <div className="text-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            <p className="text-muted-foreground mt-4">Loading wishlist...</p>
+            <p className="text-muted-foreground mt-4">{t('loadingwishlist')}</p>
           </div>
         )}
 

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,14 +9,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { WishlistTable } from '@/components/wishlist/WishlistTable'
 import { WishlistItem } from '@prisma/client'
+import { useParams } from 'next/navigation'
 
-type Props = {
-  params: {
-    token: string
-  }
-}
-
-export default function AdminPage({ params }: Props) {
+export default function AdminPage() {
   const t = useTranslations('admin')
   const [formData, setFormData] = useState({
     title: "",
@@ -29,15 +23,9 @@ export default function AdminPage({ params }: Props) {
     priority: "3"
   })
   const [items, setItems] = useState<WishlistItem[]>([])
-  const [token, setToken] = useState("")
-
-  useEffect(() => {
-    const getParams = async () => {
-      const paramToken = await params.token
-      setToken(paramToken)
-    }
-    getParams()
-  }, [])
+  
+  const params = useParams<{ token: string }>()
+  const userToken = params.token
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -52,7 +40,7 @@ export default function AdminPage({ params }: Props) {
           ...formData,
           price: formData.price ? parseFloat(formData.price) : null,
           priority: parseInt(formData.priority),
-          token: token
+          token: userToken
         }),
       })
 
@@ -71,8 +59,8 @@ export default function AdminPage({ params }: Props) {
         priority: "3"
       })
 
-      // Optional: Show success message or redirect
-      // router.push('/wishlist')
+      // Refresh the items list after successful submission
+      fetchItems()
 
     } catch (error) {
       console.error('Error creating wish:', error)
@@ -96,12 +84,12 @@ export default function AdminPage({ params }: Props) {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(`/api/wishlist/${id}`, {
+      const response = await fetch(`/api/wishlist/${id}?id=${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token: token }),
+        body: JSON.stringify({ token: userToken }),
       })
 
       if (!response.ok) throw new Error('Failed to delete item')
@@ -198,7 +186,7 @@ export default function AdminPage({ params }: Props) {
       </Card>
       
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Wishlist Items</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('wishlistItems')}</h2>
         <WishlistTable items={items} onDelete={handleDelete} />
       </div>
     </div>

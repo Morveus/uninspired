@@ -2,14 +2,14 @@
     "wishlist": {
       "description": "Quand les idées cadeau manquent",
       "fulldescription": "Un wishlist minimaliste, auto-hébergée",
-      "viewwishlist": "Afficher la liste de cadeaux 🎁",
+      "viewwishlist": "🎁 Afficher la liste de cadeaux de {username} 🎁",
       "selfhosted": "Auto-hébergé",
       "selfhosteddescription": "Vos souhaits, votre serveur. Gardez vos données privées et sous votre contrôle.",
       "sharecarefully": "Partager sans prise de tête",
       "sharecarefullydescription": "Une liste pour l'administrateur. Zéro complexité. Démarrez plusieurs instances pour plusieurs membres de la famille, en utilisant des ports ou sous-domaines différents.",
       "staysimple": "Restez simple",
       "staysimpledescription": "Pas d'ads, pas de notifications, pas de complexité. Juste des listes de choses que vous aimeriez.",
-      "wishlist": "Liste de cadeaux",
+      "wishlist": "Liste de cadeaux de {username}",
       "itemsinthewishlist": "article(s) dans la liste de cadeaux",
       "offer": "Je l'offre",
       "purchaseConfirmation": "Confirmation d'achat",
@@ -21,7 +21,8 @@
       "purchaseDialogButton": "Confirmer",
       "purchaseDialogCancel": "Annuler",
       "purchaseDialogSuccess": "Offert !",
-      "enterYourName": "Entrez votre nom"
+      "enterYourName": "Entrez votre nom",
+      "loadingwishlist": "Chargement de la liste de cadeaux..."
     },
     "auth": {
       "login": "Connexion",
@@ -44,6 +45,8 @@
       "highPriority": "Haute",
       "mediumPriority": "Moyenne",
       "lowPriority": "Basse",
-      "addWishButton": "Ajouter"
+      "addWishButton": "Ajouter",
+      "loadingwishlist": "Chargement de la liste de cadeaux...",
+      "wishlistItems": "Articles de la liste de cadeaux"
     }
   }

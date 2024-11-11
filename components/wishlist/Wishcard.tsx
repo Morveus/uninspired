@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import { WishlistItem } from '@prisma/client'
 import { PurchaseDialog } from './PurchaseDialog'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 export function WishCard({ item }: { item: WishlistItem }) {
   const t = useTranslations('wishlist')
@@ -50,17 +51,19 @@ export function WishCard({ item }: { item: WishlistItem }) {
         <div className="relative h-48 w-full">
           {item.url ? (
             <a href={item.url} target="_blank" rel="noopener noreferrer">
-              <img
+              <Image
                 src={item.image}
                 alt={item.title}
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover"
               />
             </a>
           ) : (
-            <img
+            <Image
               src={item.image}
               alt={item.title}
-              className="object-cover w-full h-full"
+              fill
+              className="object-cover"
             />
           )}
         </div>

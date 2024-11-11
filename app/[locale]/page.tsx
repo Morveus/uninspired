@@ -16,21 +16,11 @@ function FeatureCard({ title, description, icon }: { title: string; description:
 
 export default function Home() {
   const t = useTranslations('wishlist');
+  const userName = process.env.NEXT_PUBLIC_USER_NAME
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       <div className="container mx-auto px-4 py-16">
-        {/* Admin Button */}
-        <div className="flex justify-end mb-4">
-          <Button
-            variant="ghost"
-            className="text-muted-foreground hover:text-foreground"
-          >
-            <Link href="/admin">
-              <Settings />
-            </Link>
-          </Button>
-        </div>
 
         {/* Hero Section */}
         <main className="flex flex-col items-center text-center space-y-8 py-20">
@@ -57,7 +47,7 @@ export default function Home() {
               className="font-medium animate-bounce bg-gradient-to-r from-red-500 to-green-500 hover:from-green-500 hover:to-red-500 hover:text-yellow-200 text-white border-none text-xl py-6"
             >
               <Link href="/wishlist">
-                {t('viewwishlist')} 🎁
+                {t('wishlist', {username: userName})} 🎁
               </Link>
             </Button>
           </div>

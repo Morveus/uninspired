@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function PATCH(request: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -22,10 +22,11 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
   }
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest) {
+
+  const searchParams = request.nextUrl.searchParams;
+  const id = parseInt(searchParams.get('id') || '', 10);
+
   try {
     const json = await request.json()
     
@@ -39,7 +40,7 @@ export async function DELETE(
 
     await prisma.wishlistItem.delete({
       where: {
-        id: parseInt(params.id),
+        id: id,
       },
     })
 

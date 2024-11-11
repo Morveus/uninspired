@@ -10,6 +10,7 @@ export async function POST(
  
     return NextResponse.json({ success: true })
   } catch (error) {
+    console.error('Error signing in:', error)
     return NextResponse.json(
       { error: 'Something went wrong.' },
       { status: 500 }

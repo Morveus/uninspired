@@ -33,6 +33,7 @@ export async function POST(request: Request) {
 
     // Remove token from data before saving
     const { token, ...itemData } = json
+    console.log(token)
 
     const item = await prisma.wishlistItem.create({
       data: itemData,
