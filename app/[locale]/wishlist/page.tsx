@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import { WishCard } from "@/components/wishlist/Wishcard"
 import { SortSelector } from "@/components/wishlist/SortSelector"
+import { CheckboxWithTooltip } from "@/components/wishlist/CheckboxWithTooltip"
 
 interface WishlistItem {
   id: number
@@ -67,15 +68,11 @@ export default function WishlistPage() {
           </div>
           <div className="mt-8 flex flex-col items-center gap-4">
             <SortSelector value={sort} onChange={(value: SortOption) => setSort(value)} />
-            <label className="flex items-center gap-2 text-sm text-muted-foreground">
-              <input
-                type="checkbox"
-                checked={showPurchased}
-                onChange={(e) => setShowPurchased(e.target.checked)}
-                className="rounded border-gray-300"
-              />
-              {t('showPurchased')}
-            </label>
+            <CheckboxWithTooltip
+              checked={showPurchased}
+              onChange={setShowPurchased}
+              label={t('showPurchased')}
+            />
           </div>
         </div>
 

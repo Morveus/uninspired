@@ -30,7 +30,8 @@
       "showPurchased": "Afficher les articles ayant déjà été offerts",
       "switchTheme": "Changer entre le mode clair et le mode sombre",
       "fast": "Rapide",
-      "fastdescription": "Développé avec NextJS, TailwindCSS et Shadcn/UI."
+      "fastdescription": "Développé avec NextJS, TailwindCSS et Shadcn/UI.",
+      "showPurchasedTooltip": "Cocher cette case pour afficher les articles déjà offerts"
     },
     "admin": {
       "addWish": "Ajouter un souhait",
