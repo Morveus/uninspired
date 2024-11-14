@@ -5,10 +5,8 @@
       "viewwishlist": "🎁 Afficher la liste de souhaits de {username} 🎁",
       "selfhosted": "Auto-hébergé",
       "selfhosteddescription": "Vos souhaites, votre serveur. Gardez vos données privées et sous votre contrôle.",
-      "sharecarefully": "Partager sans prise de tête",
+      "sharecarefully": "Simple",
       "sharecarefullydescription": "Une liste pour l'administrateur. Zéro complexité. Démarrez plusieurs instances pour plusieurs membres de la famille, en utilisant des ports ou sous-domaines différents.",
-      "staysimple": "Restez simple",
-      "staysimpledescription": "Pas d'ads, pas de notifications, pas de complexité. Juste des listes de choses que vous aimeriez.",
       "wishlist": "Liste de {username}",
       "itemsinthewishlist": "article(s) restant dans la liste de cadeaux",
       "offer": "Je l'offre",
@@ -30,7 +28,9 @@
       "priceHighToLow": "Tri par prix : plus chers en premier",
       "priceLowToHigh": "Tri par prix : moins chers en premier",
       "showPurchased": "Afficher les articles ayant déjà été offerts",
-      "switchTheme": "Changer entre le mode clair et le mode sombre"
+      "switchTheme": "Changer entre le mode clair et le mode sombre",
+      "fast": "Rapide",
+      "fastdescription": "Développé avec NextJS, TailwindCSS et Shadcn/UI."
     },
     "admin": {
       "addWish": "Ajouter un souhait",

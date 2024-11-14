@@ -63,12 +63,12 @@ export default function Home() {
             <FeatureCard 
               title={t('sharecarefully')}
               description={t('sharecarefullydescription')}
-              icon="🤫"
+              icon="🔧"
             />
             <FeatureCard 
-              title={t('staysimple')}
-              description={t('staysimpledescription')}
-              icon="✨"
+              title={t('fast')}
+              description={t('fastdescription')}
+              icon="⚡️"
             />
           </div>
         </section>

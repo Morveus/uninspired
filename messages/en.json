@@ -5,10 +5,8 @@
     "viewwishlist": "🎁 View {username}'s wishlist 🎁",
     "selfhosted": "Self-hosted",
     "selfhosteddescription": "Your wishes, your server. Keep your data private and under your control.",
-    "sharecarefully": "Share without hassle",
+    "sharecarefully": "Simple",
     "sharecarefullydescription": "One list per admin. Zero complexity. Start multiple instances for different family members using different ports or subdomains.",
-    "staysimple": "Keep it simple",
-    "staysimpledescription": "No ads, no notifications, no complexity. Just lists of things you'd like.",
     "wishlist": "{username}'s List",
     "itemsinthewishlist": "item(s) left in the wishlist",
     "offer": "I'll get this",
@@ -30,7 +28,9 @@
     "priceHighToLow": "Sort by price: most expensive first",
     "priceLowToHigh": "Sort by price: least expensive first",
     "showPurchased": "Show items that have already been gifted",
-    "switchTheme": "Switch between light and dark mode"
+    "switchTheme": "Switch between light and dark mode",
+    "fast": "Fast",
+    "fastdescription": "Developed with NextJS, TailwindCSS and Shadcn/UI."
   },
   "admin": {
     "addWish": "Add wish",
