@@ -11,6 +11,7 @@ A minimalist, self-hosted wishlist application with no unnecessary complexity. B
 - 🎨 **Modern UI**: Simple, light and responsive design
 - 🔒 **Basic Security**: Simple token-based admin access
 - 📈 **Scraper**: Very rudimentary page scraper
+- 🌓 **Theme**: Switch between light and dark (default) mode
 
 # Screenshots
 

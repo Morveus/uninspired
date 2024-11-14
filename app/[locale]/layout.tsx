@@ -8,7 +8,6 @@ import {NextIntlClientProvider} from 'next-intl';
 import type { Locale } from '@/i18n/routing';
 import {Link} from '@/i18n/routing';
 import { ThemeProvider } from "@/components/ThemeProvider"
-import { ModeToggle } from "@/components/ThemeSwitcher"
 import { cookies } from 'next/headers'
 import { ThemeSwitcherWithTooltip } from "@/components/ThemeSwitcherWithTooltip"
 
