@@ -5,10 +5,10 @@ export type Locale = 'en' | 'fr';
 
 export const routing = defineRouting({
   // A list of all locales that are supported
-  locales: ['en', 'fr'] as const,
+  locales: ['en', 'fr', 'de', 'es', 'it', 'pl', 'ru', 'pt', 'zh'] as const,
  
   // Used when no locale matches
-  defaultLocale: 'fr'
+  defaultLocale: 'en'
 });
  
 // Lightweight wrappers around Next.js' navigation APIs

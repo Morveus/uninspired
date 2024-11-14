@@ -56,7 +56,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en" className={theme} style={{ colorScheme: theme }}>
+    <html lang={locale} className={theme} style={{ colorScheme: theme }}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

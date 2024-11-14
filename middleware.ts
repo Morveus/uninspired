@@ -7,7 +7,7 @@ import type { NextRequest } from 'next/server';
 function middleware(request: NextRequest) {
   // Extract token from URL if present
   const pathname = request.nextUrl.pathname;
-  const tokenMatch = pathname.match(/\/(en|fr)\/admin\/([\w-]+)/);
+  const tokenMatch = pathname.match(/\/(en|fr|de|es|it|pl|ru|pt|zh)\/admin\/([\w-]+)/);
   
   if (tokenMatch) {
     const token = tokenMatch[2];
@@ -29,5 +29,5 @@ export default middleware;
 
 export const config = {
   // Match both internationalized pathnames and token paths
-  matcher: ['/', '/(en|fr)/:path*', '/(en|fr)/token/:path*']
+  matcher: ['/', '/(en|fr|de|es|it|pl|ru|pt|zh)/:path*', '/(en|fr|de|es|it|pl|ru|pt|zh)/token/:path*']
 };
