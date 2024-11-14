@@ -47,7 +47,7 @@ docker buildx build --platform linux/amd64,linux/arm64 -t YOUR_DOCKER_HUB_USERNA
 docker run -d \
   --name uninspired \
   -e NEXT_PUBLIC_USER_NAME=Yourname \
-  -e LOGIN_TOKEN=alongasstokenyou \
+  -e LOGIN_TOKEN=ALongAsstokenYouWillUseAsALoginToken \
   -p 3000:3000 \
   morveus/uninspired:latest
 ```
