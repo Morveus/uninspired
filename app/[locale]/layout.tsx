@@ -10,6 +10,7 @@ import {Link} from '@/i18n/routing';
 import { ThemeProvider } from "@/components/ThemeProvider"
 import { cookies } from 'next/headers'
 import { ThemeSwitcherWithTooltip } from "@/components/ThemeSwitcherWithTooltip"
+import { LanguageSelector } from "@/components/LanguageSelector"
 
 
 const geistSans = localFont({
@@ -73,7 +74,10 @@ export default async function RootLayout({
                   <Link href="/" className="text-xl font-semibold">
                     Uninspired
                   </Link>
-                  <ThemeSwitcherWithTooltip />
+                  <div className="flex gap-2">
+                    <LanguageSelector currentLocale={locale as Locale} />
+                    <ThemeSwitcherWithTooltip />
+                  </div>
                 </div>
               </div>
             </header>

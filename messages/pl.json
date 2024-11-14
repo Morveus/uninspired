@@ -31,7 +31,9 @@
       "switchTheme": "Przełącz między trybem jasnym a ciemnym",
       "fast": "Szybka",
       "fastdescription": "Stworzona z użyciem NextJS, TailwindCSS i Shadcn/UI.",
-      "showPurchasedTooltip": "Zaznacz to pole, aby zobaczyć już podarowane przedmioty"
+      "showPurchasedTooltip": "Zaznacz to pole, aby zobaczyć już podarowane przedmioty",
+      "changeLanguage": "Zmień język",
+      "selectLanguage": "Wybierz język"
     },
     "admin": {
       "addWish": "Dodaj życzenie",

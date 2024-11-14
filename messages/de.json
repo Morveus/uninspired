@@ -31,7 +31,9 @@
       "switchTheme": "Zwischen Hell- und Dunkelmodus wechseln",
       "fast": "Schnell",
       "fastdescription": "Entwickelt mit NextJS, TailwindCSS und Shadcn/UI.",
-      "showPurchasedTooltip": "Aktivieren Sie diese Option, um bereits verschenkte Artikel anzuzeigen"
+      "showPurchasedTooltip": "Aktivieren Sie diese Option, um bereits verschenkte Artikel anzuzeigen",
+      "changeLanguage": "Sprache ändern",
+      "selectLanguage": "Sprache auswählen"
     },
     "admin": {
       "addWish": "Wunsch hinzufügen",

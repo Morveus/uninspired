@@ -31,7 +31,9 @@
       "switchTheme": "Переключить между светлой и тёмной темой",
       "fast": "Быстрый",
       "fastdescription": "Разработано с использованием NextJS, TailwindCSS и Shadcn/UI.",
-      "showPurchasedTooltip": "Отметьте этот флажок, чтобы показать уже подаренные предметы"
+      "showPurchasedTooltip": "Отметьте этот флажок, чтобы показать уже подаренные предметы",
+      "changeLanguage": "Сменить язык",
+      "selectLanguage": "Выбрать язык"
     },
     "admin": {
       "addWish": "Добавить желание",

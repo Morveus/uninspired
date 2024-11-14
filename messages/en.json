@@ -31,7 +31,9 @@
     "switchTheme": "Switch between light and dark mode",
     "fast": "Fast",
     "fastdescription": "Developed with NextJS, TailwindCSS and Shadcn/UI.",
-    "showPurchasedTooltip": "Check this box to show items that have already been gifted"
+    "showPurchasedTooltip": "Check this box to show items that have already been gifted",
+    "changeLanguage": "Change language",
+    "selectLanguage": "Select language"
   },
   "admin": {
     "addWish": "Add wish",

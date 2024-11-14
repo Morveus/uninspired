@@ -31,7 +31,9 @@
       "switchTheme": "Cambia tra modalità chiara e scura",
       "fast": "Veloce",
       "fastdescription": "Sviluppato con NextJS, TailwindCSS e Shadcn/UI.",
-      "showPurchasedTooltip": "Spunta questa casella per mostrare gli articoli già regalati"
+      "showPurchasedTooltip": "Spunta questa casella per mostrare gli articoli già regalati",
+      "changeLanguage": "Cambia lingua",
+      "selectLanguage": "Seleziona lingua"
     },
     "admin": {
       "addWish": "Aggiungi desiderio",

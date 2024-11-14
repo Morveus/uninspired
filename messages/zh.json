@@ -31,7 +31,9 @@
       "switchTheme": "切换明暗主题",
       "fast": "快速",
       "fastdescription": "使用NextJS、TailwindCSS和Shadcn/UI开发。",
-      "showPurchasedTooltip": "勾选此框以显示已送出的物品"
+      "showPurchasedTooltip": "勾选此框以显示已送出的物品",
+      "changeLanguage": "切换语言",
+      "selectLanguage": "选择语言"
     },
     "admin": {
       "addWish": "添加愿望",

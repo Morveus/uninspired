@@ -31,7 +31,9 @@
       "switchTheme": "Alternar entre modo claro e escuro",
       "fast": "Rápido",
       "fastdescription": "Desenvolvido com NextJS, TailwindCSS e Shadcn/UI.",
-      "showPurchasedTooltip": "Marque esta caixa para mostrar itens já presenteados"
+      "showPurchasedTooltip": "Marque esta caixa para mostrar itens já presenteados",
+      "changeLanguage": "Mudar idioma",
+      "selectLanguage": "Selecionar idioma"
     },
     "admin": {
       "addWish": "Adicionar desejo",
