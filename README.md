@@ -15,15 +15,17 @@ A minimalist, self-hosted wishlist application with no unnecessary complexity. B
 
 # Screenshots
 
-<img width="788" alt="image" src="https://github.com/user-attachments/assets/1d0352c0-6b51-48bb-9af2-bf317f8648af">
+### Homepage
+<img width="1085" alt="image" src="https://github.com/user-attachments/assets/5a4d7208-4c4c-4900-abbc-bf4d137955b4">
 
-<img width="776" alt="image" src="https://github.com/user-attachments/assets/072543f4-3fb3-4ee6-b8ad-af80ee6dd1f2">
+### Public wishlist
+![image](https://github.com/user-attachments/assets/e52e1ddb-7e9c-4b1e-a370-64e04380877d)
 
-<img width="622" alt="image" src="https://github.com/user-attachments/assets/8833f6c1-422d-48be-885c-647b3f82656f">
+### Gifting
+<img width="538" alt="image" src="https://github.com/user-attachments/assets/82bc1a33-e8f1-4eee-b848-47e76f4b212b">
 
-<img width="773" alt="image" src="https://github.com/user-attachments/assets/d552a632-9049-42ef-a77d-e6874c315bc2">
-
-
+### Admin page
+<img width="1091" alt="image" src="https://github.com/user-attachments/assets/652e83d0-47f1-4910-a360-f212f7227337">
 
 # Demo
 A demo is available at [uninspired.demo.morveus.com](https://uninspired.demo.morveus.com/)
