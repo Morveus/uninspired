@@ -28,7 +28,9 @@
       "priorityHighToLow": "Tri par priorité : haute priorité en premier",
       "priorityLowToHigh": "Tri par priorité : basse priorité en premier",
       "priceHighToLow": "Tri par prix : plus chers en premier",
-      "priceLowToHigh": "Tri par prix : moins chers en premier"
+      "priceLowToHigh": "Tri par prix : moins chers en premier",
+      "showPurchased": "Afficher les articles ayant déjà été offerts",
+      "switchTheme": "Changer entre le mode clair et le mode sombre"
     },
     "admin": {
       "addWish": "Ajouter un souhait",
@@ -45,6 +47,8 @@
       "lowPriority": "Basse",
       "addWishButton": "Ajouter",
       "loadingwishlist": "Chargement de la liste de cadeaux...",
-      "wishlistItems": "Articles de la liste de cadeaux"
+      "wishlistItems": "Articles de la liste de cadeaux",
+      "scrapeUrl": "Récupérer automatiquement les détails depuis l'URL",
+      "showOfferedBy": "Afficher qui a offert"
     }
   }

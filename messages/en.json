@@ -28,7 +28,9 @@
     "priorityHighToLow": "Sort by priority: high priority first",
     "priorityLowToHigh": "Sort by priority: low priority first",
     "priceHighToLow": "Sort by price: most expensive first",
-    "priceLowToHigh": "Sort by price: least expensive first"
+    "priceLowToHigh": "Sort by price: least expensive first",
+    "showPurchased": "Show items that have already been gifted",
+    "switchTheme": "Switch between light and dark mode"
   },
   "admin": {
     "addWish": "Add wish",
@@ -45,6 +47,8 @@
     "lowPriority": "Low",
     "addWishButton": "Add",
     "loadingwishlist": "Loading wishlist...",
-    "wishlistItems": "Wishlist items"
+    "wishlistItems": "Wishlist items",
+    "scrapeUrl": "Automatically fetch details from URL",
+    "showOfferedBy": "Show who offered"
   }
 }

@@ -23,6 +23,9 @@ export default function AdminPage() {
     priority: "3"
   })
   const [items, setItems] = useState<WishlistItem[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [shouldScrape, setShouldScrape] = useState(true)
+  const [showOfferedBy, setShowOfferedBy] = useState(false)
   
   const params = useParams<{ token: string }>()
   const userToken = params.token
@@ -101,8 +104,50 @@ export default function AdminPage() {
     }
   }
 
+  const scrapeUrl = async (url: string) => {
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/scrape', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url }),
+      })
+
+      if (!response.ok) throw new Error('Failed to scrape URL')
+      
+      const data = await response.json()
+      
+      setFormData(prev => ({
+        ...prev,
+        title: data.title || prev.title,
+        description: data.description || prev.description,
+        image: data.image || prev.image,
+        price: data.price?.toString() || prev.price,
+      }))
+    } catch (error) {
+      console.error('Error scraping URL:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newUrl = e.target.value
+    setFormData({ ...formData, url: newUrl })
+    if (shouldScrape && newUrl) {
+      scrapeUrl(newUrl)
+    }
+  }
+
   return (
     <div className="container mx-auto py-10 space-y-8">
+      {isLoading && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-white"></div>
+        </div>
+      )}
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle>{t('addWish')}</CardTitle>
@@ -110,6 +155,24 @@ export default function AdminPage() {
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Input
+                placeholder={t('url')}
+                type="url"
+                value={formData.url}
+                onChange={handleUrlChange}
+              />
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="scrape"
+                checked={shouldScrape}
+                onChange={(e) => setShouldScrape(e.target.checked)}
+                className="rounded border-gray-300"
+              />
+              <label htmlFor="scrape">{t('scrapeUrl')}</label>
+            </div>
             <div className="space-y-2">
               <Input
                 placeholder={t('title')}
@@ -123,14 +186,6 @@ export default function AdminPage() {
                 placeholder={t('description')}
                 value={formData.description}
                 onChange={(e) => setFormData({...formData, description: e.target.value})}
-              />
-            </div>
-            <div className="space-y-2">
-              <Input
-                placeholder={t('url')}
-                type="url"
-                value={formData.url}
-                onChange={(e) => setFormData({...formData, url: e.target.value})}
               />
             </div>
             <div className="space-y-2">
@@ -186,8 +241,24 @@ export default function AdminPage() {
       </Card>
       
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">{t('wishlistItems')}</h2>
-        <WishlistTable items={items} onDelete={handleDelete} />
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-2xl font-bold">{t('wishlistItems')}</h2>
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="showOfferedBy"
+              checked={showOfferedBy}
+              onChange={(e) => setShowOfferedBy(e.target.checked)}
+              className="rounded border-gray-300"
+            />
+            <label htmlFor="showOfferedBy">{t('showOfferedBy')}</label>
+          </div>
+        </div>
+        <WishlistTable 
+          items={items} 
+          onDelete={handleDelete} 
+          showOfferedBy={showOfferedBy}
+        />
       </div>
     </div>
   )

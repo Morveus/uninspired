@@ -15,9 +15,14 @@ import { WishlistItem } from "@prisma/client"
 interface WishlistTableProps {
   items: WishlistItem[]
   onDelete: (id: number) => void
+  showOfferedBy?: boolean
 }
 
-export function WishlistTable({ items, onDelete }: WishlistTableProps) {
+export function WishlistTable({ 
+  items, 
+  onDelete, 
+  showOfferedBy = false
+}: WishlistTableProps) {
   return (
     <div className="rounded-md border">
       <Table>
@@ -26,22 +31,26 @@ export function WishlistTable({ items, onDelete }: WishlistTableProps) {
             <TableHead>Item Name</TableHead>
             <TableHead>Description</TableHead>
             <TableHead>Price</TableHead>
-            <TableHead>Offered By</TableHead>
+            {showOfferedBy && <TableHead>Offered By</TableHead>}
             <TableHead className="w-[100px]">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {items.map((item) => (
             <TableRow key={item.id}>
-              <TableCell className="font-medium">{item.title}</TableCell>
-              <TableCell>{item.description || '-'}</TableCell>
+              <TableCell className="font-medium max-w-[100px] truncate">
+                {item.title}
+              </TableCell>
+              <TableCell className="max-w-[200px] truncate">
+                {item.description || '-'}
+              </TableCell>
               <TableCell>
                 {item.price 
                   ? `${item.price} ${item.currency || 'EUR'}`
                   : '-'
                 }
               </TableCell>
-              <TableCell>{item.purchasedBy || '-'}</TableCell>
+              {showOfferedBy && <TableCell>{item.purchasedBy || '-'}</TableCell>}
               <TableCell>
                 <Button
                   variant="ghost"

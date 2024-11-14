@@ -10,6 +10,7 @@ A minimalist, self-hosted wishlist application with no unnecessary complexity. B
 - 👥 **Share Easily**: Your wishlist is public, simply share the link to /wishlist
 - 🎨 **Modern UI**: Simple, light and responsive design
 - 🔒 **Basic Security**: Simple token-based admin access
+- 📈 **Scraper**: Very rudimentary page scraper
 
 # Screenshots
 

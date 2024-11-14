@@ -28,6 +28,7 @@ export default function WishlistPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [sort, setSort] = useState<SortOption>('price-asc')
+  const [showPurchased, setShowPurchased] = useState(false)
   const t = useTranslations('wishlist')
   const userName = process.env.NEXT_PUBLIC_USER_NAME
 
@@ -45,6 +46,10 @@ export default function WishlistPage() {
       })
   }, [sort])
 
+  const displayedItems = showPurchased 
+    ? items 
+    : items.filter(item => !item.purchased)
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       <div className="container mx-auto px-4 py-8">
@@ -60,8 +65,17 @@ export default function WishlistPage() {
             </p>
             <div className="h-0.5 w-12 bg-primary/20 rounded-full" />
           </div>
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex flex-col items-center gap-4">
             <SortSelector value={sort} onChange={(value: SortOption) => setSort(value)} />
+            <label className="flex items-center gap-2 text-sm text-muted-foreground">
+              <input
+                type="checkbox"
+                checked={showPurchased}
+                onChange={(e) => setShowPurchased(e.target.checked)}
+                className="rounded border-gray-300"
+              />
+              {t('showPurchased')}
+            </label>
           </div>
         </div>
 
@@ -83,7 +97,7 @@ export default function WishlistPage() {
         {/* Wishlist Grid with animation */}
         {!loading && !error && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
-            {items.map((item, index) => (
+            {displayedItems.map((item, index) => (
               <div
                 key={item.id}
                 className="animate-fade-in"

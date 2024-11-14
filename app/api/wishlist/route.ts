@@ -8,20 +8,32 @@ export async function GET(request: NextRequest) {
     const sort = searchParams.get('sort') || 'price-asc'
     const [field, order] = sort.split('-')
 
-    const orderBy: Prisma.WishlistItemOrderByWithRelationInput[] = [
-      { purchased: 'asc' }, // Always keep purchased items at the bottom
-    ]
+    const orderBy: Prisma.WishlistItemOrderByWithRelationInput[] = []
 
-    // Add sorting based on query parameter
+    // Add sorting based on query parameter first
     if (field === 'priority') {
       orderBy.push({ priority: order as Prisma.SortOrder })
     } else if (field === 'price') {
       orderBy.push({ price: order as Prisma.SortOrder })
     }
 
-    const items = await prisma.wishlistItem.findMany({
+    // Add creation date as secondary sorting criteria
+    orderBy.push({ createdAt: 'desc' })
+
+    // Get unpurchased items
+    const unpurchasedItems = await prisma.wishlistItem.findMany({
+      where: { purchased: false },
       orderBy,
     })
+
+    // Get purchased items
+    const purchasedItems = await prisma.wishlistItem.findMany({
+      where: { purchased: true },
+      orderBy,
+    })
+
+    // Combine the results with purchased items at the end
+    const items = [...unpurchasedItems, ...purchasedItems]
 
     return NextResponse.json(items)
   } catch (error) {
