@@ -16,15 +16,19 @@ A minimalist, self-hosted wishlist application with no unnecessary complexity. B
 # Screenshots
 
 <img width="1085" alt="image" src="https://github.com/user-attachments/assets/5a4d7208-4c4c-4900-abbc-bf4d137955b4">
+
 Landing page
 
 ![image](https://github.com/user-attachments/assets/e52e1ddb-7e9c-4b1e-a370-64e04380877d)
+
 Wishlist
 
 <img width="538" alt="image" src="https://github.com/user-attachments/assets/82bc1a33-e8f1-4eee-b848-47e76f4b212b">
+
 Gifting
 
 <img width="1091" alt="image" src="https://github.com/user-attachments/assets/652e83d0-47f1-4910-a360-f212f7227337">
+
 Admin page
 
 
