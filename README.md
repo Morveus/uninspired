@@ -5,7 +5,7 @@ A minimalist, self-hosted wishlist application with no unnecessary complexity. B
 ## Features
 
 - 🏠 **Self-hosted**: Keep your data private and under your control
-- 🌍 **Multilingual**: Supports English and French out of the box
+- 🌍 **Multilingual**: Ships with English 🇬🇧, French 🇫🇷, German 🇩🇪, Spanish 🇪🇸, Italian 🇮🇹, Polish 🇵🇱, Portuguese 🇵🇹, Russian 🇷🇺 and Chinese 🇨🇳
 - 🎁 **Simple Wishlist Management**: Easy to add, edit, and manage wish items
 - 👥 **Share Easily**: Your wishlist is public, simply share the link to /wishlist
 - 🎨 **Modern UI**: Simple, light and responsive design
