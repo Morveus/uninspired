@@ -37,10 +37,7 @@ export default function Home() {
           </p>
 
           <div className="flex gap-4 mt-8">
-            {/* <Button size="lg" className="font-medium">
-              {t('login')}
-            </Button> */}
-            <Button 
+<Button 
               size="lg" 
               variant="outline" 
               className="font-medium animate-bounce bg-gradient-to-r from-red-500 to-green-500 hover:from-green-500 hover:to-red-500 hover:text-yellow-200 text-white border-none text-xl py-6"
