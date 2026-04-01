@@ -1,5 +1,7 @@
 # Uninspired
 
+> **Note:** This project is no longer actively maintained by a human. All future development, bug fixes, and improvements are handled by AI (Claude Code).
+
 A minimalist, self-hosted wishlist application with no unnecessary complexity. Built with Next.js, Prisma, and TypeScript.
 
 ## Features
