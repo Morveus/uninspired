@@ -64,5 +64,5 @@ async function middleware(request: NextRequest) {
 export default middleware
 
 export const config = {
-  matcher: ['/', `/(${['en', 'fr', 'de', 'es', 'it', 'pl', 'ru', 'pt', 'zh'].join('|')})/:path*`]
+  matcher: ['/', '/(en|fr|de|es|it|pl|ru|pt|zh)/:path*']
 }
