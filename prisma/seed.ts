@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
@@ -65,6 +66,17 @@ async function main() {
     })
   }
   
+  // Seed admin user
+  await prisma.adminUser.deleteMany()
+  const passwordHash = await bcrypt.hash('admin', 12)
+  await prisma.adminUser.create({
+    data: {
+      username: 'admin',
+      passwordHash,
+    },
+  })
+  console.log('Admin user seeded (admin/admin)')
+
   console.log('Database has been seeded')
 }
 
