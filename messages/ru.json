@@ -35,6 +35,21 @@
       "changeLanguage": "Сменить язык",
       "selectLanguage": "Выбрать язык"
     },
+    "auth": {
+      "login": "Войти",
+      "username": "Имя пользователя",
+      "password": "Пароль",
+      "loginButton": "Войти",
+      "loginError": "Неверное имя пользователя или пароль",
+      "logout": "Выйти",
+      "changeCredentials": "Изменить учётные данные",
+      "currentPassword": "Текущий пароль",
+      "newUsername": "Новое имя пользователя",
+      "newPassword": "Новый пароль",
+      "updateButton": "Обновить",
+      "updateSuccess": "Учётные данные успешно обновлены",
+      "updateError": "Не удалось обновить учётные данные"
+    },
     "admin": {
       "addWish": "Добавить желание",
       "addWishDescription": "Добавьте новое желание в ваш список",

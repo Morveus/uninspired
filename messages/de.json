@@ -35,6 +35,21 @@
       "changeLanguage": "Sprache ändern",
       "selectLanguage": "Sprache auswählen"
     },
+    "auth": {
+      "login": "Anmelden",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "loginButton": "Anmelden",
+      "loginError": "Ungültiger Benutzername oder Passwort",
+      "logout": "Abmelden",
+      "changeCredentials": "Zugangsdaten ändern",
+      "currentPassword": "Aktuelles Passwort",
+      "newUsername": "Neuer Benutzername",
+      "newPassword": "Neues Passwort",
+      "updateButton": "Aktualisieren",
+      "updateSuccess": "Zugangsdaten erfolgreich aktualisiert",
+      "updateError": "Fehler beim Aktualisieren der Zugangsdaten"
+    },
     "admin": {
       "addWish": "Wunsch hinzufügen",
       "addWishDescription": "Fügen Sie Ihrer Liste einen neuen Wunsch hinzu",

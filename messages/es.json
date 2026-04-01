@@ -35,6 +35,21 @@
       "changeLanguage": "Cambiar idioma",
       "selectLanguage": "Seleccionar idioma"
     },
+    "auth": {
+      "login": "Iniciar sesión",
+      "username": "Nombre de usuario",
+      "password": "Contraseña",
+      "loginButton": "Iniciar sesión",
+      "loginError": "Nombre de usuario o contraseña inválidos",
+      "logout": "Cerrar sesión",
+      "changeCredentials": "Cambiar credenciales",
+      "currentPassword": "Contraseña actual",
+      "newUsername": "Nuevo nombre de usuario",
+      "newPassword": "Nueva contraseña",
+      "updateButton": "Actualizar",
+      "updateSuccess": "Credenciales actualizadas con éxito",
+      "updateError": "Error al actualizar las credenciales"
+    },
     "admin": {
       "addWish": "Agregar deseo",
       "addWishDescription": "Agrega un nuevo deseo a tu lista",

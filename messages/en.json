@@ -35,6 +35,21 @@
     "changeLanguage": "Change language",
     "selectLanguage": "Select language"
   },
+  "auth": {
+    "login": "Log in",
+    "username": "Username",
+    "password": "Password",
+    "loginButton": "Log in",
+    "loginError": "Invalid username or password",
+    "logout": "Log out",
+    "changeCredentials": "Change credentials",
+    "currentPassword": "Current password",
+    "newUsername": "New username",
+    "newPassword": "New password",
+    "updateButton": "Update",
+    "updateSuccess": "Credentials updated successfully",
+    "updateError": "Failed to update credentials"
+  },
   "admin": {
     "addWish": "Add wish",
     "addWishDescription": "Add a new wish to your list",

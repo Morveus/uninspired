@@ -35,6 +35,21 @@
       "changeLanguage": "切换语言",
       "selectLanguage": "选择语言"
     },
+    "auth": {
+      "login": "登录",
+      "username": "用户名",
+      "password": "密码",
+      "loginButton": "登录",
+      "loginError": "用户名或密码无效",
+      "logout": "退出",
+      "changeCredentials": "修改凭据",
+      "currentPassword": "当前密码",
+      "newUsername": "新用户名",
+      "newPassword": "新密码",
+      "updateButton": "更新",
+      "updateSuccess": "凭据更新成功",
+      "updateError": "凭据更新失败"
+    },
     "admin": {
       "addWish": "添加愿望",
       "addWishDescription": "向你的清单添加新愿望",

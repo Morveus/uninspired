@@ -35,6 +35,21 @@
       "changeLanguage": "Zmień język",
       "selectLanguage": "Wybierz język"
     },
+    "auth": {
+      "login": "Zaloguj się",
+      "username": "Nazwa użytkownika",
+      "password": "Hasło",
+      "loginButton": "Zaloguj się",
+      "loginError": "Nieprawidłowa nazwa użytkownika lub hasło",
+      "logout": "Wyloguj",
+      "changeCredentials": "Zmień dane logowania",
+      "currentPassword": "Aktualne hasło",
+      "newUsername": "Nowa nazwa użytkownika",
+      "newPassword": "Nowe hasło",
+      "updateButton": "Zaktualizuj",
+      "updateSuccess": "Dane logowania zaktualizowane pomyślnie",
+      "updateError": "Nie udało się zaktualizować danych logowania"
+    },
     "admin": {
       "addWish": "Dodaj życzenie",
       "addWishDescription": "Dodaj nowe życzenie do swojej listy",
