@@ -5,6 +5,7 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 
 COPY package.json ./package.json
+RUN apk add --no-cache openssl
 RUN npm i --legacy-peer-deps
 
 COPY app ./app
@@ -25,6 +26,7 @@ COPY start.sh ./start.sh
 COPY prisma/schema.prisma ./prisma/schema.prisma
 COPY prisma/migrations ./prisma/migrations
 COPY prisma/seed.ts ./prisma/seed.ts
+RUN npx prisma generate
 
 # Set environment variable for runtime
 ENV NODE_ENV=production

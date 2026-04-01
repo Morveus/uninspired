@@ -27,15 +27,6 @@ A minimalist, self-hosted wishlist application with no unnecessary complexity. B
 ### Admin page
 <img width="1091" alt="image" src="https://github.com/user-attachments/assets/652e83d0-47f1-4910-a360-f212f7227337">
 
-# Demo
-A demo is available at [uninspired.demo.morveus.com](https://uninspired.demo.morveus.com/)
-
-Admin token for the demo is `this-is-a-test-token`, which means you can connect to the admin panel at `/en/admin/this-is-a-test-token` (or `/fr/admin/this-is-a-test-token` if you prefer French)
-
-Full URL: [https://uninspired.demo.morveus.com/en/admin/this-is-a-test-token](https://uninspired.demo.morveus.com/en/admin/this-is-a-test-token)
-
-I'll reset the demo database regularly, so don't expect to keep your changes after a while.
-
 # Instructions
 
 ## How to build and push to Docker Hub
