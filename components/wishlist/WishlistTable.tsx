@@ -16,12 +16,14 @@ interface WishlistTableProps {
   items: WishlistItem[]
   onDelete: (id: number) => void
   showOfferedBy?: boolean
+  deletingId?: number | null
 }
 
-export function WishlistTable({ 
-  items, 
-  onDelete, 
-  showOfferedBy = false
+export function WishlistTable({
+  items,
+  onDelete,
+  showOfferedBy = false,
+  deletingId = null,
 }: WishlistTableProps) {
   return (
     <div className="rounded-md border">
@@ -45,7 +47,7 @@ export function WishlistTable({
                 {item.description || '-'}
               </TableCell>
               <TableCell>
-                {item.price 
+                {item.price
                   ? `${item.price} ${item.currency || 'EUR'}`
                   : '-'
                 }
@@ -56,8 +58,13 @@ export function WishlistTable({
                   variant="ghost"
                   size="icon"
                   onClick={() => onDelete(item.id)}
+                  disabled={deletingId === item.id}
                 >
-                  <Trash className="h-4 w-4" />
+                  {deletingId === item.id ? (
+                    <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-current" />
+                  ) : (
+                    <Trash className="h-4 w-4" />
+                  )}
                 </Button>
               </TableCell>
             </TableRow>
