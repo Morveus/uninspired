@@ -1,33 +1,68 @@
-import createMiddleware from 'next-intl/middleware';
-import {routing} from './i18n/routing';
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import createMiddleware from 'next-intl/middleware'
+import { routing } from './i18n/routing'
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+import { jwtVerify } from 'jose'
 
-// Create a custom middleware function
-function middleware(request: NextRequest) {
-  // Extract token from URL if present
-  const pathname = request.nextUrl.pathname;
-  const tokenMatch = pathname.match(/\/(en|fr|de|es|it|pl|ru|pt|zh)\/admin\/([\w-]+)/);
-  
-  if (tokenMatch) {
-    const token = tokenMatch[2];
-    // Check if token matches LOGIN_TOKEN from .env
-    if (token !== process.env.LOGIN_TOKEN) {
-      // Return 401 Unauthorized if token doesn't match
-      return NextResponse.json(
-        { error: 'Invalid token' },
-        { status: 401 }
-      );
+const COOKIE_NAME = 'uninspired-session'
+const localePattern = routing.locales.join('|')
+
+function getJwtSecret() {
+  const secret = process.env.JWT_SECRET
+  if (!secret) throw new Error('JWT_SECRET environment variable is required')
+  return new TextEncoder().encode(secret)
+}
+
+async function verifySessionMiddleware(request: NextRequest): Promise<boolean> {
+  const token = request.cookies.get(COOKIE_NAME)?.value
+  if (!token) return false
+  try {
+    await jwtVerify(token, getJwtSecret())
+    return true
+  } catch {
+    return false
+  }
+}
+
+async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname
+
+  // Check if this is an admin route
+  const adminMatch = pathname.match(new RegExp(`^/(${localePattern})/admin`))
+  if (adminMatch) {
+    const isValid = await verifySessionMiddleware(request)
+    if (!isValid) {
+      const locale = adminMatch[1]
+      const loginUrl = new URL(`/${locale}/login`, request.url)
+      return NextResponse.redirect(loginUrl)
     }
   }
 
-  // Continue with the intl middleware
-  return createMiddleware(routing)(request);
+  // Check CSRF on API mutations
+  if (pathname.startsWith('/api/') && !pathname.startsWith('/api/auth/login') && !pathname.startsWith('/api/auth/logout')) {
+    const method = request.method
+    if (['POST', 'PATCH', 'DELETE'].includes(method)) {
+      // CSRF check: compare header to JWT claim
+      const token = request.cookies.get(COOKIE_NAME)?.value
+      if (token) {
+        try {
+          const { payload } = await jwtVerify(token, getJwtSecret())
+          const csrfHeader = request.headers.get('X-CSRF-Token')
+          if (csrfHeader && csrfHeader !== payload.csrf) {
+            return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 })
+          }
+        } catch {
+          // JWT invalid — let the route handler deal with auth
+        }
+      }
+    }
+  }
+
+  return createMiddleware(routing)(request)
 }
 
-export default middleware;
+export default middleware
 
 export const config = {
-  // Match both internationalized pathnames and token paths
-  matcher: ['/', '/(en|fr|de|es|it|pl|ru|pt|zh)/:path*', '/(en|fr|de|es|it|pl|ru|pt|zh)/token/:path*']
-};
+  matcher: ['/', `/(${['en', 'fr', 'de', 'es', 'it', 'pl', 'ru', 'pt', 'zh'].join('|')})/:path*`]
+}
