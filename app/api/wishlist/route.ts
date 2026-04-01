@@ -1,8 +1,21 @@
 import { prisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 import { Prisma } from '@prisma/client'
+import { getSessionFromCookies } from '@/lib/auth'
+import { validateCsrf } from '@/lib/csrf'
+import { rateLimit } from '@/lib/rate-limit'
 
 export async function GET(request: NextRequest) {
+  const ip = request.headers.get('x-forwarded-for') || 'unknown'
+  const { allowed, retryAfter } = rateLimit(`api:${ip}`, 30, 60 * 1000)
+
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429, headers: { 'Retry-After': String(retryAfter) } }
+    )
+  }
+
   try {
     const searchParams = request.nextUrl.searchParams
     const sort = searchParams.get('sort') || 'price-asc'
@@ -10,29 +23,24 @@ export async function GET(request: NextRequest) {
 
     const orderBy: Prisma.WishlistItemOrderByWithRelationInput[] = []
 
-    // Add sorting based on query parameter first
     if (field === 'priority') {
       orderBy.push({ priority: order as Prisma.SortOrder })
     } else if (field === 'price') {
       orderBy.push({ price: order as Prisma.SortOrder })
     }
 
-    // Add creation date as secondary sorting criteria
     orderBy.push({ createdAt: 'desc' })
 
-    // Get unpurchased items
     const unpurchasedItems = await prisma.wishlistItem.findMany({
       where: { purchased: false },
       orderBy,
     })
 
-    // Get purchased items
     const purchasedItems = await prisma.wishlistItem.findMany({
       where: { purchased: true },
       orderBy,
     })
 
-    // Combine the results with purchased items at the end
     const items = [...unpurchasedItems, ...purchasedItems]
 
     return NextResponse.json(items)
@@ -45,21 +53,28 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function POST(request: Request) {
-  try {
-    const json = await request.json()
-    
-    // Validate admin token
-    if (json.token !== process.env.LOGIN_TOKEN) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      )
-    }
+export async function POST(request: NextRequest) {
+  const ip = request.headers.get('x-forwarded-for') || 'unknown'
+  const { allowed, retryAfter } = rateLimit(`api:${ip}`, 30, 60 * 1000)
 
-    // Remove token from data before saving
-    const { token, ...itemData } = json
-    console.log(token)
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429, headers: { 'Retry-After': String(retryAfter) } }
+    )
+  }
+
+  const session = await getSessionFromCookies()
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  if (!(await validateCsrf(request))) {
+    return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 })
+  }
+
+  try {
+    const itemData = await request.json()
 
     const item = await prisma.wishlistItem.create({
       data: itemData,
@@ -72,4 +87,4 @@ export async function POST(request: Request) {
       { status: 500 }
     )
   }
-} 
+}

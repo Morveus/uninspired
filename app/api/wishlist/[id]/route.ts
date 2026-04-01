@@ -1,8 +1,21 @@
 import { prisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
+import { getSessionFromCookies } from '@/lib/auth'
+import { validateCsrf } from '@/lib/csrf'
+import { rateLimit } from '@/lib/rate-limit'
 
-export async function PATCH(request: Request, props: { params: Promise<{ id: string }> }) {
-  const params = await props.params;
+export async function PATCH(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params
+  const ip = request.headers.get('x-forwarded-for') || 'unknown'
+  const { allowed, retryAfter } = rateLimit(`api:${ip}`, 30, 60 * 1000)
+
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429, headers: { 'Retry-After': String(retryAfter) } }
+    )
+  }
+
   try {
     const id = parseInt(params.id)
     const json = await request.json()
@@ -23,25 +36,31 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
 }
 
 export async function DELETE(request: NextRequest) {
+  const ip = request.headers.get('x-forwarded-for') || 'unknown'
+  const { allowed, retryAfter } = rateLimit(`api:${ip}`, 30, 60 * 1000)
 
-  const searchParams = request.nextUrl.searchParams;
-  const id = parseInt(searchParams.get('id') || '', 10);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429, headers: { 'Retry-After': String(retryAfter) } }
+    )
+  }
+
+  const session = await getSessionFromCookies()
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  if (!(await validateCsrf(request))) {
+    return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 })
+  }
+
+  const searchParams = request.nextUrl.searchParams
+  const id = parseInt(searchParams.get('id') || '', 10)
 
   try {
-    const json = await request.json()
-    
-    // Validate admin token
-    if (json.token !== process.env.LOGIN_TOKEN) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      )
-    }
-
     await prisma.wishlistItem.delete({
-      where: {
-        id: id,
-      },
+      where: { id },
     })
 
     return NextResponse.json({ success: true })
@@ -52,4 +71,4 @@ export async function DELETE(request: NextRequest) {
       { status: 500 }
     )
   }
-} 
+}
