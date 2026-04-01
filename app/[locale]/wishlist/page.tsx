@@ -47,14 +47,45 @@ export default function WishlistPage() {
       })
   }, [sort])
 
-  const displayedItems = showPurchased 
-    ? items 
+  const handlePurchase = async (itemId: number, purchaserName: string) => {
+    const previousItems = items
+    const now = new Date()
+
+    // Optimistic update
+    setItems(items.map(item =>
+      item.id === itemId
+        ? { ...item, purchased: true, purchasedBy: purchaserName, purchasedAt: now }
+        : item
+    ))
+
+    try {
+      const response = await fetch(`/api/wishlist/${itemId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          purchased: true,
+          purchasedBy: purchaserName,
+          purchasedAt: now,
+        }),
+      })
+
+      if (!response.ok) {
+        setItems(previousItems)
+        throw new Error('Failed to update item')
+      }
+    } catch (error) {
+      console.error('Error updating item:', error)
+      setItems(previousItems)
+    }
+  }
+
+  const displayedItems = showPurchased
+    ? items
     : items.filter(item => !item.purchased)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       <div className="container mx-auto px-4 py-8">
-        {/* Header with decorative elements */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             {t('wishlist', {username: userName})}
@@ -76,7 +107,6 @@ export default function WishlistPage() {
           </div>
         </div>
 
-        {/* Loading State */}
         {loading && (
           <div className="text-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
@@ -84,14 +114,12 @@ export default function WishlistPage() {
           </div>
         )}
 
-        {/* Error State */}
         {error && (
           <div className="text-center py-20">
             <p className="text-destructive">{error}</p>
           </div>
         )}
 
-        {/* Wishlist Grid with animation */}
         {!loading && !error && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
             {displayedItems.map((item, index) => (
@@ -100,7 +128,7 @@ export default function WishlistPage() {
                 className="animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <WishCard item={item} />
+                <WishCard item={item} onPurchase={handlePurchase} />
               </div>
             ))}
           </div>

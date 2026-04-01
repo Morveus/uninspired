@@ -6,41 +6,19 @@ import { PurchaseDialog } from './PurchaseDialog'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 
-export function WishCard({ item }: { item: WishlistItem }) {
+interface WishCardProps {
+  item: WishlistItem
+  onPurchase: (itemId: number, purchaserName: string) => Promise<void>
+}
+
+export function WishCard({ item, onPurchase }: WishCardProps) {
   const t = useTranslations('wishlist')
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const handlePurchase = async (purchaserName: string) => {
-    try {
-      const response = await fetch(`/api/wishlist/${item.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          purchased: true,
-          purchasedBy: purchaserName,
-          purchasedAt: new Date(),
-        }),
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to update item')
-      }
-
-      // Refresh the page to show updated data
-      window.location.reload()
-    } catch (error) {
-      console.error('Error updating item:', error)
-    }
+    await onPurchase(item.id, purchaserName)
     setIsDialogOpen(false)
   }
-
-//   const itemLink = item.url ? (
-//     <a href={item.url} target="_blank" rel="noopener noreferrer" className="block">
-//       {/* Content */}
-//     </a>
-//   ) : null
 
   return (
     <div className={cn(
@@ -83,11 +61,11 @@ export function WishCard({ item }: { item: WishlistItem }) {
             {item.priority === 3 && <span className="text-yellow-500">⭐</span>}
           </div>
         </div>
-        
+
         {item.description && (
           <p className="text-muted-foreground mt-2">{item.description}</p>
         )}
-        
+
         <div className="mt-4 flex items-center justify-between">
           {item.price && (
             <p className="font-medium">
@@ -106,7 +84,7 @@ export function WishCard({ item }: { item: WishlistItem }) {
 
         {item.purchased && (
           <div className="mt-4 text-sm text-muted-foreground text-red-500">
-            {t('purchasedBy', { 
+            {t('purchasedBy', {
               name: item.purchasedBy || t('someone'),
               date: new Date(item.purchasedAt!).toLocaleDateString()
             })}
