@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,7 +11,7 @@ model WishlistItem {
   id          Int      @id @default(autoincrement())
   title       String
   description String?
-  url         String?
+  url         String?  @unique
   image       String?
   currency    String?
   price       Float?
@@ -27,4 +21,15 @@ model WishlistItem {
   purchasedBy String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@index([purchased, priority])
+  @@index([purchased, createdAt])
+}
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
