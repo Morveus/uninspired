@@ -24,14 +24,39 @@ interface WishlistItem {
 
 type SortOption = 'priority-asc' | 'priority-desc' | 'price-asc' | 'price-desc'
 
+const SORT_STORAGE_KEY = 'uninspired-wishlist-sort'
+const DEFAULT_SORT: SortOption = 'priority-asc'
+const VALID_SORTS: SortOption[] = ['priority-asc', 'priority-desc', 'price-asc', 'price-desc']
+
 export default function WishlistPage() {
   const [items, setItems] = useState<WishlistItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [sort, setSort] = useState<SortOption>('price-asc')
+  const [sort, setSort] = useState<SortOption>(DEFAULT_SORT)
   const [showPurchased, setShowPurchased] = useState(false)
   const t = useTranslations('wishlist')
   const userName = process.env.NEXT_PUBLIC_USER_NAME
+
+  // Restore saved sort choice from localStorage on first render.
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(SORT_STORAGE_KEY)
+      if (saved && (VALID_SORTS as string[]).includes(saved)) {
+        setSort(saved as SortOption)
+      }
+    } catch {
+      // localStorage may be unavailable (private mode, etc.) — keep the default.
+    }
+  }, [])
+
+  const handleSortChange = (next: SortOption) => {
+    setSort(next)
+    try {
+      window.localStorage.setItem(SORT_STORAGE_KEY, next)
+    } catch {
+      // ignore
+    }
+  }
 
   useEffect(() => {
     fetch(`/api/wishlist?sort=${sort}`)
@@ -98,7 +123,7 @@ export default function WishlistPage() {
             <div className="h-0.5 w-12 bg-primary/20 rounded-full" />
           </div>
           <div className="mt-8 flex flex-col items-center gap-4">
-            <SortSelector value={sort} onChange={(value: SortOption) => setSort(value)} />
+            <SortSelector value={sort} onChange={handleSortChange} />
             <CheckboxWithTooltip
               checked={showPurchased}
               onChange={setShowPurchased}
