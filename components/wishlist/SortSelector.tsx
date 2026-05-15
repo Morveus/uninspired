@@ -17,8 +17,8 @@ export function SortSelector({ value = 'price-asc', onChange }: SortSelectorProp
         <SelectValue placeholder={t('sortBy')} />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="priority-desc">{t('priorityHighToLow')}</SelectItem>
-        <SelectItem value="priority-asc">{t('priorityLowToHigh')}</SelectItem>
+        <SelectItem value="priority-asc">{t('priorityHighToLow')}</SelectItem>
+        <SelectItem value="priority-desc">{t('priorityLowToHigh')}</SelectItem>
         <SelectItem value="price-desc">{t('priceHighToLow')}</SelectItem>
         <SelectItem value="price-asc">{t('priceLowToHigh')}</SelectItem>
       </SelectContent>
