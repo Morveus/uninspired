@@ -48,7 +48,14 @@
     "newPassword": "New password",
     "updateButton": "Update",
     "updateSuccess": "Credentials updated successfully",
-    "updateError": "Failed to update credentials"
+    "updateError": "Failed to update credentials",
+    "setupTitle": "First-time setup",
+    "setupDescription": "No admin account yet. Create one to get started.",
+    "setupButton": "Create account",
+    "passwordConfirm": "Confirm password",
+    "setupError": "Setup failed",
+    "setupPasswordTooShort": "Password must be at least 8 characters",
+    "setupPasswordMismatch": "Passwords do not match"
   },
   "admin": {
     "addWish": "Add wish",
