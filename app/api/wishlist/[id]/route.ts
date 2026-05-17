@@ -4,6 +4,10 @@ import { getSessionFromCookies } from '@/lib/auth'
 import { validateCsrf } from '@/lib/csrf'
 import { rateLimit } from '@/lib/rate-limit'
 
+// Fields the public "I'll offer this" flow may set without auth.
+// Anything else requires admin session + CSRF.
+const PUBLIC_PURCHASE_FIELDS = new Set(['purchased', 'purchasedBy', 'purchasedAt'])
+
 export async function PATCH(request: NextRequest, props: { params: Promise<{ id: string }> }) {
   const params = await props.params
   const ip = request.headers.get('x-forwarded-for') || 'unknown'
@@ -16,9 +20,30 @@ export async function PATCH(request: NextRequest, props: { params: Promise<{ id:
     )
   }
 
+  let json: Record<string, unknown>
+  try {
+    json = await request.json()
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
+  }
+
+  const requiresAdmin = Object.keys(json).some(k => !PUBLIC_PURCHASE_FIELDS.has(k))
+
+  if (requiresAdmin) {
+    const session = await getSessionFromCookies()
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    if (!(await validateCsrf(request))) {
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 })
+    }
+  }
+
   try {
     const id = parseInt(params.id)
-    const json = await request.json()
+    if (isNaN(id)) {
+      return NextResponse.json({ error: 'Invalid id' }, { status: 400 })
+    }
 
     const updatedItem = await prisma.wishlistItem.update({
       where: { id },

@@ -18,16 +18,34 @@ interface WishlistTableProps {
   onDelete: (id: number) => void
   showOfferedBy?: boolean
   deletingId?: number | null
+  // If provided, the Priority cell becomes clickable and cycles
+  // 3 (1 star) → 2 (2 stars) → 1 (3 stars) → 3 on each click.
+  onPriorityChange?: (id: number, newPriority: number) => void | Promise<void>
 }
 
 type SortField = 'title' | 'description' | 'price' | 'priority' | 'purchasedBy'
 type SortOrder = 'asc' | 'desc'
 
-function PriorityStars({ priority }: { priority: number }) {
-  if (priority === 1) return <span className="text-red-500">⭐⭐⭐</span>
-  if (priority === 2) return <span className="text-amber-500">⭐⭐</span>
-  if (priority === 3) return <span className="text-yellow-500">⭐</span>
-  return <span className="text-muted-foreground">-</span>
+function PriorityStars({ priority, onClick }: { priority: number; onClick?: () => void }) {
+  const content =
+    priority === 1 ? <span className="text-red-500">⭐⭐⭐</span> :
+    priority === 2 ? <span className="text-amber-500">⭐⭐</span> :
+    priority === 3 ? <span className="text-yellow-500">⭐</span> :
+    <span className="text-muted-foreground">-</span>
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className="cursor-pointer hover:opacity-70 transition-opacity"
+        aria-label="Cycle priority"
+      >
+        {content}
+      </button>
+    )
+  }
+  return content
 }
 
 function compareNullable<T>(a: T | null, b: T | null, cmp: (x: T, y: T) => number): number {
@@ -42,6 +60,7 @@ export function WishlistTable({
   onDelete,
   showOfferedBy = false,
   deletingId = null,
+  onPriorityChange,
 }: WishlistTableProps) {
   const [sortField, setSortField] = useState<SortField>('priority')
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc')
@@ -124,7 +143,14 @@ export function WishlistTable({
                 }
               </TableCell>
               <TableCell>
-                <PriorityStars priority={item.priority} />
+                <PriorityStars
+                  priority={item.priority}
+                  onClick={onPriorityChange ? () => {
+                    // cycle visible : 1 star (3) → 2 stars (2) → 3 stars (1) → 1 star (3)
+                    const next = item.priority === 1 ? 3 : item.priority - 1
+                    onPriorityChange(item.id, next)
+                  } : undefined}
+                />
               </TableCell>
               {showOfferedBy && <TableCell>{item.purchasedBy || '-'}</TableCell>}
               <TableCell>

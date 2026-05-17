@@ -89,6 +89,30 @@ export default function AdminPage() {
     }
   }
 
+  const handlePriorityChange = async (id: number, newPriority: number) => {
+    const previousItems = items
+    // optimistic update
+    setItems(items.map(it => it.id === id ? { ...it, priority: newPriority } : it))
+
+    try {
+      const response = await fetch(`/api/wishlist/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+        body: JSON.stringify({ priority: newPriority }),
+      })
+      if (!response.ok) {
+        setItems(previousItems)
+        throw new Error('Failed to update priority')
+      }
+    } catch (error) {
+      console.error('Error updating priority:', error)
+      setItems(previousItems)
+    }
+  }
+
   const handleDelete = async (id: number) => {
     setDeletingId(id)
     const previousItems = items
@@ -319,6 +343,7 @@ export default function AdminPage() {
           onDelete={handleDelete}
           showOfferedBy={showOfferedBy}
           deletingId={deletingId}
+          onPriorityChange={handlePriorityChange}
         />
       </div>
 
